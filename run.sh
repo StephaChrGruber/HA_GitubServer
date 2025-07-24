@@ -50,4 +50,4 @@ exec /usr/sbin/sshd -D -p 2222 -E /var/log/sshd.log
 
 # Keep container running
 echo "[GitServer] Running tail to keep container alive..."
-tail -f /var/log/sshd.log
+# tail -f /var/log/sshd.log
