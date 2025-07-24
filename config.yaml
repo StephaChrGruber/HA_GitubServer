@@ -15,6 +15,6 @@ privileged:
 map:
   - share:rw
 options: 
- key: ""
+ public_key: ""
 schema:
- key: str
+ public_key: str
