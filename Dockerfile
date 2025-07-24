@@ -9,6 +9,8 @@ RUN adduser -D -s /bin/sh git && \
     mkdir -p /home/git/.ssh && \
     chown -R git:git /home/git
 
+RUN apk add --no-cache git openssh bash jq
+
 # Copy startup script
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
