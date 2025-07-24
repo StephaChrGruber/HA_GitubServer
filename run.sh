@@ -2,20 +2,24 @@
 
 set -e
 
-echo "[GitServer] Starting Git SSH server..."
+echo "[GitServer] Setting up Git SSH server..."
 
-# Ensure home and ssh directory exists
+# Create git user home and .ssh directory
 mkdir -p /home/git/.ssh
 chmod 700 /home/git/.ssh
 touch /home/git/.ssh/authorized_keys
 
-# Populate authorized_keys from config
+# Inject public key from add-on config
 echo "$PUBLIC_KEY" > /home/git/.ssh/authorized_keys
-
-# Set correct permissions
-chown -R git:git /home/git
 chmod 600 /home/git/.ssh/authorized_keys
+chown -R git:git /home/git
 
-# Start SSH server
+# 🛠 Generate host keys if missing
+if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then
+  echo "[GitServer] Generating SSH host keys..."
+  ssh-keygen -A
+fi
+
+# ✅ Start SSH daemon
 echo "[GitServer] Starting SSH daemon..."
 exec /usr/sbin/sshd -D
