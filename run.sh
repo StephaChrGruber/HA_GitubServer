@@ -50,4 +50,3 @@ exec /usr/sbin/sshd -p 2222
 
 # Keep container running
 echo "[GitServer] Running tail to keep container alive..."
-tail -f /dev/null
