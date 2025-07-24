@@ -13,8 +13,8 @@ RUN adduser -D -s /bin/sh git && \
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
 
-# Expose SSH on port 22 (to avoid port 22 conflicts with host)
-EXPOSE 22
+# Expose SSH on port 2222 (to avoid port 22 conflicts with host)
+EXPOSE 2222
 
 # Start the script
 CMD ["/run.sh"]
