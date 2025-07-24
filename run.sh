@@ -2,18 +2,20 @@
 
 set -e
 
-echo "[GitServer] Starting SSH and Git service..."
+echo "[GitServer] Starting Git SSH server..."
 
-# Set up SSH key (public key must be placed manually)
-if [ ! -f /home/git/.ssh/authorized_keys ]; then
-  echo "[GitServer] No authorized_keys found, refusing to start"
-  exit 1
-fi
-
-# Set proper permissions
-chown -R git:git /home/git/.ssh
+# Ensure home and ssh directory exists
+mkdir -p /home/git/.ssh
 chmod 700 /home/git/.ssh
+touch /home/git/.ssh/authorized_keys
+
+# Populate authorized_keys from config
+echo "$PUBLIC_KEY" > /home/git/.ssh/authorized_keys
+
+# Set correct permissions
+chown -R git:git /home/git
 chmod 600 /home/git/.ssh/authorized_keys
 
-# Start SSH daemon
-/usr/sbin/sshd -D
+# Start SSH server
+echo "[GitServer] Starting SSH daemon..."
+exec /usr/sbin/sshd -D
