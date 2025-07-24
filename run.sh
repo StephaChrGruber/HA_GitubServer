@@ -46,4 +46,8 @@ echo "[GitServer] Unlocking git user and setting valid shell..."
 echo "[GitServer] Unlocking git user..."
 sed -i 's/^git:!:/git::/' /etc/shadow
 echo "[GitServer] Starting SSH daemon on port 2222..."
-exec /usr/sbin/sshd -D -p 2222 -d
+exec /usr/sbin/sshd -p 2222
+
+# Keep container running
+echo "[GitServer] Running tail to keep container alive..."
+tail -f /dev/null
