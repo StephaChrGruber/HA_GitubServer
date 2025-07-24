@@ -14,5 +14,7 @@ privileged:
   - SYS_ADMIN
 map:
   - share:rw
-options: {}
-schema: {}
+options: 
+ key: ""
+schema:
+ key: str
