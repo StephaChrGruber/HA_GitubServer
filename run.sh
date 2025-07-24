@@ -45,6 +45,5 @@ echo "$PUBLIC_KEY"
 echo "[GitServer] Unlocking git user and setting valid shell..."
 echo "[GitServer] Unlocking git user..."
 sed -i 's/^git:!:/git::/' /etc/shadow
-passwd -u git  # unlock the user if it was locked
 echo "[GitServer] Starting SSH daemon on port 2222..."
 exec /usr/sbin/sshd -D -p 2222 -d
