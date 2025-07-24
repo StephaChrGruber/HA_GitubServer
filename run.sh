@@ -2,15 +2,16 @@
 
 set -e
 
-echo "[GitServer] Setting up Git SSH server..."
-echo "$PUBLIC_KEY"
-# === Normalize PUBLIC_KEY ===
-CLEAN_KEY=$(echo "$PUBLIC_KEY" | tr -d '\n' | tr -s ' ')
-echo "[DEBUG] Loaded SSH public key: $CLEAN_KEY"
+echo "[GitServer] Loading config from /data/options.json..."
 
-# === Inject into authorized_keys ===
+# Read the public_key from the JSON config file
+PUBLIC_KEY=$(jq -r .public_key /data/options.json)
+
+echo "[GitServer] Injecting public key: $PUBLIC_KEY"
+
+# === Setup authorized_keys ===
 mkdir -p /home/git/.ssh
-echo "$CLEAN_KEY" > /home/git/.ssh/authorized_keys
+echo "$PUBLIC_KEY" > /home/git/.ssh/authorized_keys
 chmod 700 /home/git/.ssh
 chmod 600 /home/git/.ssh/authorized_keys
 chown -R git:git /home/git
@@ -36,7 +37,7 @@ echo "[GitServer] ENV DUMP:"
 env
 
 echo "[GitServer] PUBLIC_KEY value:"
-echo "$CLEAN_KEY"
+echo "$PUBLIC_KEY"
 
 # === Start SSH ===
 echo "[GitServer] Starting SSH daemon on port 2222..."
