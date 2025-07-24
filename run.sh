@@ -12,6 +12,8 @@ echo "[GitServer] Injecting public key: $PUBLIC_KEY"
 # === Setup authorized_keys ===
 mkdir -p /home/git/.ssh
 echo "$PUBLIC_KEY" > /home/git/.ssh/authorized_keys
+echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
+echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
 chmod 700 /home/git/.ssh
 chmod 600 /home/git/.ssh/authorized_keys
 chown -R git:git /home/git
@@ -35,9 +37,6 @@ chown -R git:git "$REPO_PATH"
 
 echo "[GitServer] ENV DUMP:"
 env
-
-echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
-echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
 
 echo "[GitServer] PUBLIC_KEY value:"
 echo "$PUBLIC_KEY"
