@@ -1,5 +1,5 @@
 name: Git Server
-version: "1.9"
+version: "2.0"
 slug: git_server
 description: Private Git server with SSH for local development
 arch:
