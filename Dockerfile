@@ -3,7 +3,7 @@ FROM alpine:latest
 RUN apk add --no-cache git openssh bash
 
 # Create git user
-RUN adduser -D git && \
+RUN adduser -D -s /bin/sh git && \
     mkdir -p /home/git/.ssh && \
     chown -R git:git /home/git
 
