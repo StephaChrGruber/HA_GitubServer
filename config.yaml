@@ -1,7 +1,7 @@
 name: Git Server
 version: "1.0"
 slug: git_server
-description: Private Git server with SSH for local development and backup
+description: Private Git server with SSH for local development
 arch:
   - aarch64
   - amd64
@@ -14,7 +14,7 @@ privileged:
   - SYS_ADMIN
 map:
   - share:rw
-options: 
- public_key: ""
+options:
+  public_key: "ssh-rsa AAAA...your-key..."
 schema:
- public_key: str
+  public_key: str
