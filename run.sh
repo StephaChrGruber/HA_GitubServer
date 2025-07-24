@@ -36,6 +36,9 @@ chown -R git:git "$REPO_PATH"
 echo "[GitServer] ENV DUMP:"
 env
 
+echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
+echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
+
 echo "[GitServer] PUBLIC_KEY value:"
 echo "$PUBLIC_KEY"
 
