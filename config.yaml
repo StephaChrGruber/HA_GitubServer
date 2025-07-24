@@ -1,6 +1,7 @@
 name: Git Server
 version: "2.1"
 slug: git_server
+full_access: true
 description: Private Git server with SSH for local development
 arch:
   - aarch64
