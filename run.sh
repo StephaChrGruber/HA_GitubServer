@@ -32,6 +32,12 @@ REPO_PATH="/share/git_server/repos"
 mkdir -p "$REPO_PATH"
 chown -R git:git "$REPO_PATH"
 
+echo "[GitServer] ENV DUMP:"
+env
+
+echo "[GitServer] PUBLIC_KEY value:"
+echo "$PUBLIC_KEY"
+
 # === Start SSH ===
 echo "[GitServer] Starting SSH daemon on port 2222..."
 exec /usr/sbin/sshd -D -p 2222
