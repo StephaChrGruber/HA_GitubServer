@@ -3,7 +3,7 @@
 set -e
 
 echo "[GitServer] Setting up Git SSH server..."
-
+echo "$PUBLIC_KEY"
 # === Normalize PUBLIC_KEY ===
 CLEAN_KEY=$(echo "$PUBLIC_KEY" | tr -d '\n' | tr -s ' ')
 echo "[DEBUG] Loaded SSH public key: $CLEAN_KEY"
@@ -36,7 +36,7 @@ echo "[GitServer] ENV DUMP:"
 env
 
 echo "[GitServer] PUBLIC_KEY value:"
-echo "$PUBLIC_KEY"
+echo "$CLEAN_KEY"
 
 # === Start SSH ===
 echo "[GitServer] Starting SSH daemon on port 2222..."
