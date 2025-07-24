@@ -42,5 +42,8 @@ echo "[GitServer] PUBLIC_KEY value:"
 echo "$PUBLIC_KEY"
 
 # === Start SSH ===
+echo "[GitServer] Unlocking git user and setting valid shell..."
+usermod -s /bin/sh git
+passwd -u git  # unlock the user if it was locked
 echo "[GitServer] Starting SSH daemon on port 2222..."
 exec /usr/sbin/sshd -D -p 2222 -d
