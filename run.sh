@@ -43,4 +43,4 @@ echo "$PUBLIC_KEY"
 
 # === Start SSH ===
 echo "[GitServer] Starting SSH daemon on port 2222..."
-exec /usr/sbin/sshd -D -p 2222
+exec /usr/sbin/sshd -D -p -d 2222
