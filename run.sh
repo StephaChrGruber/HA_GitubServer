@@ -12,6 +12,12 @@ echo "[GitServer] Injecting public key: $PUBLIC_KEY"
 # === Setup authorized_keys ===
 mkdir -p /home/git/.ssh
 echo "$PUBLIC_KEY" > /home/git/.ssh/authorized_keys
+
+# Append any extra keys from persistent storage
+if [ -f /data/extra_authorized_keys ]; then
+  echo "[GitServer] Adding extra authorized keys from /data/extra_authorized_keys"
+  cat /data/extra_authorized_keys >> /home/git/.ssh/authorized_keys
+fi
 echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
 echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
 chmod 700 /home/git/.ssh
